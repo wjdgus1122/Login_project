@@ -1,3 +1,4 @@
+import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { mainstyle } from "../style/Globalstyle";
 
@@ -52,12 +53,34 @@ const Button = styled.button`
 `;
 
 export const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    setError,
+    getValues,
+    formState: { errors, isValid },
+    clearErrors,
+  } = useForm();
+  const onsubmit = () => {
+    const { username, password } = getValues();
+  };
   return (
     <Wrap>
       <FormWrap>
         <Title>JH-LOGIN</Title>
-        <Form>
-          <Input type="text" placeholder="아이디를 입력해주세요." />
+        <Form onSubmit={handleSubmit(onsubmit)}>
+          <Input
+            {...register("username", {
+              required: "아이디를 입력해주세요.",
+              minLength: {
+                value: 3,
+                message: "아이디는 3글자 이상이어야합니다.",
+              },
+              onChange() {},
+            })}
+            type="text"
+            placeholder="아이디를 입력해주세요."
+          />
           <Input type="password" placeholder="비밀번호를 입력해주세요." />
           <Button>Login</Button>
         </Form>
