@@ -119,8 +119,6 @@ export const SignUp = () => {
     if (password === pwcheck) {
       setPwFalse("none");
       setPwOk("block");
-    }
-    if (isValid === true) {
       nagivate("/");
     }
   };

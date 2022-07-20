@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { mainstyle } from "../style/Globalstyle";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 const UserDb = {
   dbuser: "test",
@@ -18,50 +20,87 @@ const Wrap = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
-const FormWrap = styled.div`
-  width: 450px;
-  padding: 20px;
-  background-color: rgba(${mainstyle.color}, 0.5);
+const LoginWrap = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 60%;
+  height: 70vh;
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
     rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
     rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 `;
+const LeftWrap = styled.div`
+  width: 40%;
+  background: url(https://mblogthumb-phinf.pstatic.net/MjAxNzA5MDNfMTIx/MDAxNTA0NDAyMzc3OTEy.Otb_Nb-WRINsvRKBn-Fmtrx2NZ2lX_uP1m1SQtcofmog.YeeMkz8jkqMvwNDNmBLEtoPistAf3z8GwegCwrKA6Pkg.JPEG.jinmichu/IMG_6491.jpg?type=w800)
+    no-repeat center/cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+  position: relative;
+`;
+const LeftTitle = styled.div`
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 40px;
+  margin-top: 120px;
+  color: rgb(${mainstyle.color});
+`;
+const LeftText = styled.div`
+  font-size: 20px;
+  font-weight: 100;
+  color: rgb(${mainstyle.color});
+  position: absolute;
+  bottom: 50px;
+`;
+const FormWrap = styled.div`
+  width: 60%;
+  padding: 0 100px;
+  background-color: rgba(${mainstyle.color}, 1);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+`;
 const Title = styled.div`
-  font-size: 35px;
+  font-size: 40px;
   font-weight: 500;
   color: ${mainstyle.logocolor};
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 70px;
+  margin-bottom: 30px;
 `;
 const Form = styled.form`
   width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+const InputTitle = styled.div`
+  font-size: 20px;
+  font-weight: 500;
+  color: ${mainstyle.fontcolor};
+  margin-top: 30px;
 `;
 const Input = styled.input`
   all: unset;
   width: 100%;
   height: 50px;
+  margin-top: 10px;
   margin-bottom: 10px;
-  border-bottom: 1px solid ${mainstyle.inputcolor};
+  border: 1px solid ${mainstyle.inputcolor};
   color: ${mainstyle.fontcolor};
   font-size: 20px;
   padding: 5px 10px;
   box-sizing: border-box;
-  &::placeholder {
-    color: ${mainstyle.fontcolor};
-  }
 `;
 const PwWrap = styled.span`
+  width: 100%;
   display: flex;
   align-items: center;
   position: relative;
-  border-bottom: 1px solid ${mainstyle.inputcolor};
+  border: 1px solid ${mainstyle.inputcolor};
+  margin-top: 10px;
   input {
+    margin-top: 0;
     margin-bottom: 0;
-    border-bottom: none;
+    border: none;
   }
 `;
 const PWViewWrap = styled.span`
@@ -94,8 +133,8 @@ const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 15px;
-  margin-bottom: 10px;
+  margin-top: 50px;
+  margin-bottom: 50px;
   color: rgb(${mainstyle.color});
   background-color: ${mainstyle.btncolor};
   opacity: ${(props) => props.opa};
@@ -112,6 +151,7 @@ const SignUp = styled.div`
   font-style: italic;
   color: ${mainstyle.fontcolor};
   font-weight: 100;
+  text-align: center;
 `;
 export const Login = () => {
   const [pwtype, setPwType] = useState("password");
@@ -154,71 +194,77 @@ export const Login = () => {
   };
   return (
     <Wrap>
-      <FormWrap>
-        <Title>JH-LOGIN</Title>
-        <Form onSubmit={handleSubmit(onsubmit)}>
-          <Input
-            {...register("username", {
-              required: "아이디를 입력해주세요.",
-              minLength: {
-                value: 3,
-                message: "아이디는 3글자 이상이어야합니다.",
-              },
-              onChange() {
-                clearErrors("userResult");
-              },
-            })}
-            type="text"
-            placeholder="아이디를 입력해주세요."
-          />
-          {errors?.username?.message && (
-            <ErrorMsg>{errors?.username?.message}</ErrorMsg>
-          )}
-          {errors?.userResult?.message && (
-            <ErrorMsg>{errors?.userResult?.message}</ErrorMsg>
-          )}
-          <PwWrap>
+      <LoginWrap>
+        <LeftWrap>
+          <LeftTitle>Welcome to Jh</LeftTitle>
+          <LeftText>This app is a login related app.</LeftText>
+        </LeftWrap>
+        <FormWrap>
+          <Title>JH-LOGIN</Title>
+          <Form onSubmit={handleSubmit(onsubmit)}>
+            <InputTitle>아이디</InputTitle>
             <Input
-              {...register("password", {
-                required: "비밀번호를 입력해주세요.",
+              {...register("username", {
+                required: "아이디를 입력해주세요.",
                 minLength: {
-                  value: 8,
-                  message: "비밀번호는 8자 이상 입력해야합니다.",
-                },
-                pattern: {
-                  value: /^(?=.*[A-Za-z])(?=.*\d)[0-9a-zA-Z]{8,16}$/,
-                  message: "비밀번호는 8자 이상, 특수문자 포함이어야 합니다.",
+                  value: 3,
+                  message: "아이디는 3글자 이상이어야합니다.",
                 },
                 onChange() {
-                  clearErrors("passResult");
+                  clearErrors("userResult");
                 },
               })}
-              type={pwtype}
-              placeholder="비밀번호를 입력해주세요."
-            />{" "}
-            <PWViewWrap>
-              <View onClick={pwhandle} dis={pwview}>
-                암호보기
-              </View>
-              <NotView onClick={pwhandle} dis={pwnot}>
-                암호감추기
-              </NotView>
-            </PWViewWrap>
-          </PwWrap>
-          {errors?.password?.message && (
-            <ErrorMsg>{errors?.password?.message}</ErrorMsg>
-          )}
-          {errors?.passResult?.message && (
-            <ErrorMsg>{errors?.passResult?.message}</ErrorMsg>
-          )}
-          <Button opa={isValid ? 1 : 0.5} cur={isValid ? "pointer" : "auto"}>
-            Login
-          </Button>
-        </Form>
-        <Link to="/signup">
-          <SignUp>회원가입</SignUp>
-        </Link>
-      </FormWrap>
+              type="text"
+            />
+            {errors?.username?.message && (
+              <ErrorMsg>{errors?.username?.message}</ErrorMsg>
+            )}
+            {errors?.userResult?.message && (
+              <ErrorMsg>{errors?.userResult?.message}</ErrorMsg>
+            )}
+            <InputTitle>비밀번호</InputTitle>
+            <PwWrap>
+              <Input
+                {...register("password", {
+                  required: "비밀번호를 입력해주세요.",
+                  minLength: {
+                    value: 8,
+                    message: "비밀번호는 8자 이상 입력해야합니다.",
+                  },
+                  pattern: {
+                    value: /^(?=.*[A-Za-z])(?=.*\d)[0-9a-zA-Z]{8,16}$/,
+                    message: "비밀번호는 8자 이상, 특수문자 포함이어야 합니다.",
+                  },
+                  onChange() {
+                    clearErrors("passResult");
+                  },
+                })}
+                type={pwtype}
+              />{" "}
+              <PWViewWrap>
+                <View onClick={pwhandle} dis={pwview}>
+                  <FontAwesomeIcon icon={faEye} />
+                </View>
+                <NotView onClick={pwhandle} dis={pwnot}>
+                  <FontAwesomeIcon icon={faEyeSlash} />
+                </NotView>
+              </PWViewWrap>
+            </PwWrap>
+            {errors?.password?.message && (
+              <ErrorMsg>{errors?.password?.message}</ErrorMsg>
+            )}
+            {errors?.passResult?.message && (
+              <ErrorMsg>{errors?.passResult?.message}</ErrorMsg>
+            )}
+            <Button opa={isValid ? 1 : 0.5} cur={isValid ? "pointer" : "auto"}>
+              Login
+            </Button>
+          </Form>
+          <Link to="/signup">
+            <SignUp>회원가입</SignUp>
+          </Link>
+        </FormWrap>
+      </LoginWrap>
     </Wrap>
   );
 };
