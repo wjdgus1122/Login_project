@@ -19,6 +19,10 @@ const Wrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media screen and (max-width: 500px) {
+    background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8i0-f7u0vj5oZeQYo6nxipfW0OCiKwufD9A&usqp=CAU)
+      no-repeat center/cover;
+  }
 `;
 const LoginWrap = styled.div`
   display: flex;
@@ -27,6 +31,11 @@ const LoginWrap = styled.div`
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
     rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
     rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+  @media screen and (max-width: 500px) {
+    width: 100%;
+    height: 100vh;
+    box-shadow: none;
+  }
 `;
 const LeftWrap = styled.div`
   width: 40%;
@@ -37,28 +46,41 @@ const LeftWrap = styled.div`
   align-items: center;
   padding-top: 50px;
   position: relative;
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
 `;
 const LeftTitle = styled.div`
   font-size: 50px;
   font-weight: 700;
   line-height: 40px;
   margin-top: 120px;
-  color: rgb(${mainstyle.color});
+  color: ${mainstyle.color};
 `;
 const LeftText = styled.div`
   font-size: 20px;
   font-weight: 100;
-  color: rgb(${mainstyle.color});
+  color: ${mainstyle.color};
   position: absolute;
   bottom: 50px;
 `;
 const FormWrap = styled.div`
   width: 60%;
   padding: 0 100px;
-  background-color: rgba(${mainstyle.color}, 1);
+  background-color: ${mainstyle.color};
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  @media screen and (max-width: 500px) {
+    width: 100%;
+    height: 80%;
+    padding: 0 40px;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    border-top-right-radius: 100px;
+    background-color: rgba(${mainstyle.colorrgb}, 0.7);
+  }
 `;
 const Title = styled.div`
   font-size: 40px;
@@ -66,14 +88,23 @@ const Title = styled.div`
   color: ${mainstyle.logocolor};
   margin-top: 70px;
   margin-bottom: 30px;
+  @media screen and (max-width: 500px) {
+    margin-top: 150px;
+  }
 `;
 const Form = styled.form`
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
+  @media screen and (max-width: 500px) {
+    width: 100%;
+    height: 100%;
+  }
 `;
 const InputTitle = styled.div`
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 500;
   color: ${mainstyle.fontcolor};
   margin-top: 30px;
@@ -83,24 +114,33 @@ const Input = styled.input`
   width: 100%;
   height: 50px;
   margin-top: 10px;
-  margin-bottom: 10px;
-  border: 1px solid ${mainstyle.inputcolor};
+  border-bottom: 1px solid ${mainstyle.inputcolor};
   color: ${mainstyle.fontcolor};
   font-size: 20px;
   padding: 5px 10px;
   box-sizing: border-box;
+  @media screen and (max-width: 500px) {
+    height: 30px;
+    font-size: 15px;
+    border-bottom: 1px solid ${mainstyle.fontcolor};
+  }
 `;
 const PwWrap = styled.span`
   width: 100%;
   display: flex;
   align-items: center;
   position: relative;
-  border: 1px solid ${mainstyle.inputcolor};
+  border-bottom: 1px solid ${mainstyle.inputcolor};
   margin-top: 10px;
   input {
     margin-top: 0;
     margin-bottom: 0;
-    border: none;
+    border-bottom: none;
+  }
+  @media screen and (max-width: 500px) {
+    height: 30px;
+    font-size: 15px;
+    border-bottom: 1px solid ${mainstyle.fontcolor};
   }
 `;
 const PWViewWrap = styled.span`
@@ -114,6 +154,9 @@ const View = styled.span`
   top: 15px;
   right: 10px;
   cursor: pointer;
+  @media screen and (max-width: 500px) {
+    top: 3px;
+  }
 `;
 const NotView = styled.span`
   display: ${(props) => props.dis};
@@ -123,34 +166,55 @@ const NotView = styled.span`
   top: 15px;
   right: 10px;
   cursor: pointer;
+  @media screen and (max-width: 500px) {
+    top: 3px;
+  }
+`;
+const BottomBtn = styled.div`
+  width: 100%;
+  font-size: 13px;
+  font-weight: 100;
+  color: ${mainstyle.fontcolor};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  bottom: 160px;
+  @media screen and (max-width: 500px) {
+    bottom: 110px;
+  }
 `;
 const Button = styled.button`
   all: unset;
   width: 100%;
   height: 50px;
-  font-size: 30px;
-  font-weight: 500;
+  font-size: 25px;
+  font-weight: 700;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  color: rgb(${mainstyle.color});
+  margin-bottom: 20px;
+  color: ${mainstyle.color};
   background-color: ${mainstyle.btncolor};
   opacity: ${(props) => props.opa};
   cursor: ${(props) => props.cur};
+  @media screen and (max-width: 500px) {
+    width: 70%;
+    border-radius: 15px;
+    border-top-right-radius: 0;
+  }
 `;
 const ErrorMsg = styled.div`
   width: 100%;
-  font-size: 15px;
+  font-size: 13px;
   color: ${mainstyle.btncolor};
   padding: 5px 10px;
 `;
 const SignUp = styled.div`
-  font-size: 15px;
+  font-size: 18px;
   font-style: italic;
   color: ${mainstyle.fontcolor};
-  font-weight: 100;
+  font-weight: 500;
   text-align: center;
 `;
 export const Login = () => {
@@ -256,13 +320,18 @@ export const Login = () => {
             {errors?.passResult?.message && (
               <ErrorMsg>{errors?.passResult?.message}</ErrorMsg>
             )}
-            <Button opa={isValid ? 1 : 0.5} cur={isValid ? "pointer" : "auto"}>
-              Login
-            </Button>
+            <BottomBtn>
+              <Button
+                opa={isValid ? 1 : 0.5}
+                cur={isValid ? "pointer" : "auto"}
+              >
+                Login
+              </Button>
+              <Link to="/signup">
+                <SignUp>SignUp</SignUp>
+              </Link>
+            </BottomBtn>
           </Form>
-          <Link to="/signup">
-            <SignUp>회원가입</SignUp>
-          </Link>
         </FormWrap>
       </LoginWrap>
     </Wrap>
