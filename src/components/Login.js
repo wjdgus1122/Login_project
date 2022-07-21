@@ -113,7 +113,6 @@ const Input = styled.input`
   all: unset;
   width: 100%;
   height: 50px;
-  margin-top: 10px;
   border-bottom: 1px solid ${mainstyle.inputcolor};
   color: ${mainstyle.fontcolor};
   font-size: 20px;
@@ -131,7 +130,6 @@ const PwWrap = styled.span`
   align-items: center;
   position: relative;
   border-bottom: 1px solid ${mainstyle.inputcolor};
-  margin-top: 10px;
   input {
     margin-top: 0;
     margin-bottom: 0;

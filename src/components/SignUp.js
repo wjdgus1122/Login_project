@@ -85,7 +85,7 @@ const Title = styled.div`
   margin-bottom: 60px;
   @media screen and (max-width: 500px) {
     color: ${mainstyle.logocolor};
-    margin-top: 80px;
+    margin-top: 150px;
   }
 `;
 const Form = styled.form`
@@ -152,7 +152,7 @@ const BottomBtn = styled.div`
   position: absolute;
   bottom: 70px;
   @media screen and (max-width: 500px) {
-    bottom: 100px;
+    bottom: 110px;
   }
 `;
 const Button = styled.button`
@@ -232,7 +232,7 @@ export const SignUp = () => {
             <LeftText>This app is a login related app.</LeftText>
           </LeftWrap>
           <FormWrap>
-            <Title>JH-SignUp</Title>
+            <Title>JH-SIGNUP</Title>
             <Form onSubmit={handleSubmit(onsubmit)}>
               <InputWrap className="first">
                 <Text>아이디 </Text>
