@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faClose } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 
+export let userDB = [];
+
 const Wrap = styled.div`
   width: 100%;
   height: 100vh;
@@ -45,6 +47,25 @@ const LeftWrap = styled.div`
     display: none;
   }
 `;
+const LeftTextWrap = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  right: -100%;
+  animation: textmove 1s 0.5s 1 forwards;
+  @keyframes textmove {
+    0% {
+      right: -100%;
+    }
+    100% {
+      right: 0;
+    }
+  }
+`;
 const LeftTitle = styled.div`
   font-size: 50px;
   font-weight: 700;
@@ -64,17 +85,27 @@ const FormWrap = styled.div`
   background-color: ${mainstyle.color};
   display: flex;
   flex-direction: column;
+  align-items: center;
   box-sizing: border-box;
   padding: 0 100px;
   @media screen and (max-width: 500px) {
     width: 100%;
     height: 80%;
     padding: 0 40px;
-    align-items: center;
-    background-color: rgba(${mainstyle.colorrgb}, 0.7);
+
+    background-color: rgba(${mainstyle.colorrgb}, 0.8);
     border-top-left-radius: 100px;
     position: absolute;
-    bottom: 0;
+    bottom: -100%;
+    animation: move 1s 0.5s 1 forwards;
+    @keyframes move {
+      0% {
+        bottom: -100%;
+      }
+      100% {
+        bottom: 0;
+      }
+    }
   }
 `;
 const Title = styled.div`
@@ -85,7 +116,7 @@ const Title = styled.div`
   margin-bottom: 60px;
   @media screen and (max-width: 500px) {
     color: ${mainstyle.logocolor};
-    margin-top: 150px;
+    margin-top: 80px;
   }
 `;
 const Form = styled.form`
@@ -193,12 +224,26 @@ const SignIn = styled.div`
     color: ${mainstyle.fontcolor};
   }
 `;
+const PopMsg = styled.div`
+  width: 200px;
+  height: 30px;
+  background-color: ${mainstyle.logocolor};
+  color: ${mainstyle.color};
+  display: ${(props) => props.dis};
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 335px;
+  @media screen and (max-width: 500px) {
+    bottom: 30px;
+  }
+`;
 
 export const SignUp = () => {
   const [pwok, setPwOk] = useState("none");
   const [pwfalse, setPwFalse] = useState("none");
+  const [popdis, setPopDis] = useState("none");
 
-  const nagivate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -210,7 +255,12 @@ export const SignUp = () => {
     mode: "onChange",
   });
   const onsubmit = () => {
-    const { password, pwcheck } = getValues();
+    const { username, password, pwcheck } = getValues();
+    const userOb = {
+      id: Date.now(),
+      username,
+      password,
+    };
 
     if (password != pwcheck) {
       setError("pwcheckError", { message: "비밀번호가 일치하지않습니다." });
@@ -220,7 +270,11 @@ export const SignUp = () => {
     if (password === pwcheck) {
       setPwFalse("none");
       setPwOk("block");
-      nagivate("/");
+      userDB.push(userOb);
+      setPopDis("flex");
+      setTimeout(() => {
+        setPopDis("none");
+      }, 2000);
     }
   };
   return (
@@ -228,8 +282,10 @@ export const SignUp = () => {
       <Wrap>
         <LoginWrap>
           <LeftWrap>
-            <LeftTitle>Welcome to Jh</LeftTitle>
-            <LeftText>This app is a login related app.</LeftText>
+            <LeftTextWrap>
+              <LeftTitle>Welcome to Jh</LeftTitle>
+              <LeftText>This app is a login related app.</LeftText>
+            </LeftTextWrap>
           </LeftWrap>
           <FormWrap>
             <Title>JH-SIGNUP</Title>
@@ -329,11 +385,12 @@ export const SignUp = () => {
                 >
                   Sign Up
                 </Button>
-                <Link to="/">
+                <Link to="/login">
                   <SignIn>LogIn</SignIn>
                 </Link>
               </BottomBtn>
             </Form>
+            <PopMsg dis={popdis}>회원가입 되었습니다.</PopMsg>
           </FormWrap>
         </LoginWrap>
       </Wrap>

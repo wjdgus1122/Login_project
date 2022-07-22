@@ -1,15 +1,11 @@
 import { useForm } from "react-hook-form";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { mainstyle } from "../style/Globalstyle";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-
-const UserDb = {
-  dbuser: "test",
-  dbpassword: "123123123a",
-};
+import { userDB } from "./SignUp";
 
 const Wrap = styled.div`
   width: 100%;
@@ -37,17 +33,34 @@ const LoginWrap = styled.div`
     box-shadow: none;
   }
 `;
+
 const LeftWrap = styled.div`
   width: 40%;
+  height: 100%;
   background: url(https://mblogthumb-phinf.pstatic.net/MjAxNzA5MDNfMTIx/MDAxNTA0NDAyMzc3OTEy.Otb_Nb-WRINsvRKBn-Fmtrx2NZ2lX_uP1m1SQtcofmog.YeeMkz8jkqMvwNDNmBLEtoPistAf3z8GwegCwrKA6Pkg.JPEG.jinmichu/IMG_6491.jpg?type=w800)
     no-repeat center/cover;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 50px;
   position: relative;
   @media screen and (max-width: 500px) {
     display: none;
+  }
+`;
+const LeftTextWrap = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  right: -100%;
+  animation: textmove 1s 0.5s 1 forwards;
+  @keyframes textmove {
+    0% {
+      right: -100%;
+    }
+    100% {
+      right: 0;
+    }
   }
 `;
 const LeftTitle = styled.div`
@@ -70,16 +83,25 @@ const FormWrap = styled.div`
   background-color: ${mainstyle.color};
   display: flex;
   flex-direction: column;
+  align-items: center;
   box-sizing: border-box;
   @media screen and (max-width: 500px) {
     width: 100%;
     height: 80%;
     padding: 0 40px;
-    align-items: center;
     position: absolute;
-    bottom: 0;
+    bottom: -100%;
     border-top-right-radius: 100px;
-    background-color: rgba(${mainstyle.colorrgb}, 0.7);
+    background-color: rgba(${mainstyle.colorrgb}, 0.8);
+    animation: move 1s 0.5s 1 forwards;
+    @keyframes move {
+      0% {
+        bottom: -100%;
+      }
+      100% {
+        bottom: 0;
+      }
+    }
   }
 `;
 const Title = styled.div`
@@ -219,6 +241,7 @@ export const Login = () => {
   const [pwtype, setPwType] = useState("password");
   const [pwview, setPwView] = useState("block");
   const [pwnot, setPwNot] = useState("none");
+  const nagivate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -231,16 +254,21 @@ export const Login = () => {
   });
   const onsubmit = () => {
     const { username, password } = getValues();
-    const { dbuser, dbpassword } = UserDb;
+    const { username: dbuser, password: dbpassword } = userDB;
+    const CompareUser = userDB.filter((username) => username === username);
+    const ComparePassWrod = userDB.filter((password) => password === password);
 
-    if (username != dbuser) {
+    if (username != CompareUser[0].username) {
       setError("userResult", { message: "아이디가 틀렸습니다." });
     }
-    if (password != dbpassword) {
+    if (password != ComparePassWrod[0].password) {
       setError("passResult", { message: "비밀번호가 틀렸습니다." });
     }
-    if (username === dbuser && password === dbpassword) {
-      alert("로그인 되었습니다.");
+    if (
+      username === CompareUser[0].username &&
+      password === ComparePassWrod[0].password
+    ) {
+      nagivate("/");
     }
   };
   const pwhandle = () => {
@@ -258,8 +286,10 @@ export const Login = () => {
     <Wrap>
       <LoginWrap>
         <LeftWrap>
-          <LeftTitle>Welcome to Jh</LeftTitle>
-          <LeftText>This app is a login related app.</LeftText>
+          <LeftTextWrap>
+            <LeftTitle>Welcome to Jh</LeftTitle>
+            <LeftText>This app is a login related app.</LeftText>
+          </LeftTextWrap>
         </LeftWrap>
         <FormWrap>
           <Title>JH-LOGIN</Title>
