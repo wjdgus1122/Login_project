@@ -1,38 +1,17 @@
 import { useForm } from "react-hook-form";
 import styled, { keyframes } from "styled-components";
 import { mainstyle } from "../style/Globalstyle";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { userDB } from "./SignUp";
-
-const Wrap = styled.div`
-  width: 100%;
-  height: 100vh;
-  background: url(https://img.freepik.com/free-vector/gradient-background-vector-in-spring-colors_53876-117271.jpg?w=360)
-    no-repeat center/cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  @media screen and (max-width: 500px) {
-    background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8i0-f7u0vj5oZeQYo6nxipfW0OCiKwufD9A&usqp=CAU)
-      no-repeat center/cover;
-  }
-`;
-const LoginWrap = styled.div`
-  display: flex;
-  width: 60%;
-  height: 70vh;
-  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
-    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
-    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
-  @media screen and (max-width: 500px) {
-    width: 100%;
-    height: 100vh;
-    box-shadow: none;
-  }
-`;
+import { Wrap } from "../stylecomponent/Wrap";
+import { LoginWrap } from "../stylecomponent/LoginWrap";
+import { LeftTextWrap } from "../stylecomponent/LeftTextWrap";
+import { Title } from "../stylecomponent/Title";
+import { BottomBtn } from "../stylecomponent/BottomBtn";
+import { InputTitle } from "../stylecomponent/InputTitle";
 
 const LeftWrap = styled.div`
   width: 40%;
@@ -44,39 +23,7 @@ const LeftWrap = styled.div`
     display: none;
   }
 `;
-const LeftTextWrap = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: absolute;
-  bottom: 0;
-  right: -100%;
-  animation: textmove 1s 0.5s 1 forwards;
-  @keyframes textmove {
-    0% {
-      right: -100%;
-    }
-    100% {
-      right: 0;
-    }
-  }
-`;
-const LeftTitle = styled.div`
-  font-size: 50px;
-  font-weight: 700;
-  line-height: 40px;
-  margin-top: 120px;
-  color: ${mainstyle.color};
-`;
-const LeftText = styled.div`
-  font-size: 20px;
-  font-weight: 100;
-  color: ${mainstyle.color};
-  position: absolute;
-  bottom: 50px;
-`;
+
 const FormWrap = styled.div`
   width: 60%;
   padding: 0 100px;
@@ -104,16 +51,7 @@ const FormWrap = styled.div`
     }
   }
 `;
-const Title = styled.div`
-  font-size: 40px;
-  font-weight: 500;
-  color: ${mainstyle.logocolor};
-  margin-top: 70px;
-  margin-bottom: 30px;
-  @media screen and (max-width: 500px) {
-    margin-top: 150px;
-  }
-`;
+
 const Form = styled.form`
   width: 100%;
   height: 100%;
@@ -125,12 +63,7 @@ const Form = styled.form`
     height: 100%;
   }
 `;
-const InputTitle = styled.div`
-  font-size: 15px;
-  font-weight: 500;
-  color: ${mainstyle.fontcolor};
-  margin-top: 30px;
-`;
+
 const Input = styled.input`
   all: unset;
   width: 100%;
@@ -190,53 +123,14 @@ const NotView = styled.span`
     top: 3px;
   }
 `;
-const BottomBtn = styled.div`
-  width: 100%;
-  font-size: 13px;
-  font-weight: 100;
-  color: ${mainstyle.fontcolor};
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: absolute;
-  bottom: 160px;
-  @media screen and (max-width: 500px) {
-    bottom: 110px;
-  }
-`;
-const Button = styled.button`
-  all: unset;
-  width: 100%;
-  height: 50px;
-  font-size: 25px;
-  font-weight: 700;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-  color: ${mainstyle.color};
-  background-color: ${mainstyle.btncolor};
-  opacity: ${(props) => props.opa};
-  cursor: ${(props) => props.cur};
-  @media screen and (max-width: 500px) {
-    width: 70%;
-    border-radius: 15px;
-    border-top-right-radius: 0;
-  }
-`;
+
 const ErrorMsg = styled.div`
   width: 100%;
   font-size: 13px;
   color: ${mainstyle.btncolor};
   padding: 5px 10px;
 `;
-const SignUp = styled.div`
-  font-size: 18px;
-  font-style: italic;
-  color: ${mainstyle.fontcolor};
-  font-weight: 500;
-  text-align: center;
-`;
+
 export const Login = () => {
   const [pwtype, setPwType] = useState("password");
   const [pwview, setPwView] = useState("block");
@@ -286,13 +180,10 @@ export const Login = () => {
     <Wrap>
       <LoginWrap>
         <LeftWrap>
-          <LeftTextWrap>
-            <LeftTitle>Welcome to Jh</LeftTitle>
-            <LeftText>This app is a login related app.</LeftText>
-          </LeftTextWrap>
+          <LeftTextWrap />
         </LeftWrap>
         <FormWrap>
-          <Title>JH-LOGIN</Title>
+          <Title title="JH-LOGIN" />
           <Form onSubmit={handleSubmit(onsubmit)}>
             <InputTitle>아이디</InputTitle>
             <Input
@@ -348,17 +239,12 @@ export const Login = () => {
             {errors?.passResult?.message && (
               <ErrorMsg>{errors?.passResult?.message}</ErrorMsg>
             )}
-            <BottomBtn>
-              <Button
-                opa={isValid ? 1 : 0.5}
-                cur={isValid ? "pointer" : "auto"}
-              >
-                Login
-              </Button>
-              <Link to="/signup">
-                <SignUp>SignUp</SignUp>
-              </Link>
-            </BottomBtn>
+            <BottomBtn
+              isvalid={isValid}
+              buttontext="Login"
+              link={`/signup`}
+              linktext="SignUp"
+            />
           </Form>
         </FormWrap>
       </LoginWrap>
