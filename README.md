@@ -28,10 +28,10 @@
 
 ### Sign-Up Page
 
-<div>
+<div align="center">
 
-![2 회원가입화면](https://user-images.githubusercontent.com/106130435/184127715-f63f603e-9864-4956-84ac-085f537b13d9.png){: width="500" height="500"}
-![4 회원가입_모바일화면](https://user-images.githubusercontent.com/106130435/184127749-22ab83b8-9eaf-491d-8b36-87ab047e7430.png){: width="500" height="500"}
+<img src="https://user-images.githubusercontent.com/106130435/184127715-f63f603e-9864-4956-84ac-085f537b13d9.png" width="500" height="500"/>
+<img src="https://user-images.githubusercontent.com/106130435/184127749-22ab83b8-9eaf-491d-8b36-87ab047e7430.png" width="500" height="500"/>
 
 </div>
 
@@ -39,10 +39,10 @@
 
 ### Log-In Page
 
-<div>
+<div align="center">
 
-![1 로그인화면](https://user-images.githubusercontent.com/106130435/184127520-cef49232-a5ca-4fe3-a6e9-8ab628b4324d.png){: width="500" height="500"}
-![3 로그인_모바일화면](https://user-images.githubusercontent.com/106130435/184127583-19b94cb2-1068-496e-8842-56e1fb052cab.png){: width="500" height="500"}
+<img src="https://user-images.githubusercontent.com/106130435/184127520-cef49232-a5ca-4fe3-a6e9-8ab628b4324d.png" width="500" height="500" />
+<img src="https://user-images.githubusercontent.com/106130435/184127583-19b94cb2-1068-496e-8842-56e1fb052cab.png" width="500" height="500"/>
 
 </div>
 
