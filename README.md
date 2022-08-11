@@ -1,6 +1,8 @@
+<div align="center">
+
 # :exclamation: 프로젝트 소개 :exclamation:
 
-## WELCOME TO JH+
+## JH Login
 
 ## 프로젝트명 : LOGIN_PROJECT
 
@@ -19,3 +21,15 @@
 ### 에디터
 
   <img src="https://img.shields.io/badge/visualstudio-007ACC?style=for-the-badge&logo=visualstudio&logoColor=white">
+
+## Pages
+
+#### Sign-Up Page
+
+- 회원가입을 할 수 있는 페이지
+
+#### Log-In Page
+
+- Sign-Up 페이지에서 입력한 정보로 로그인 할 수 있는 페이지
+
+</div>
