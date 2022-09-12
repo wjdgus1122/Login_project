@@ -22,10 +22,10 @@
 
   <img src="https://img.shields.io/badge/visualstudio-007ACC?style=for-the-badge&logo=visualstudio&logoColor=white">
   
-</div>
-
 ## 프로젝트를 진행하면서 배운점 :pencil2:
 - 로그인이 어떠한 방식으로 이루어지는지 큰 틀에 대해 알 수 있었고, input 태그를 어떻게 사용하는지 더 확실하게 알 수 있었습니다.
+  
+</div>
 
 ## Pages
 
