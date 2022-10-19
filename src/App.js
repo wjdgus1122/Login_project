@@ -8,8 +8,8 @@ import { Globalstyle } from "./style/Globalstyle";
 function App() {
   return (
     <HelmetProvider>
-      <Globalstyle />
       <Router>
+        <Globalstyle />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const HomeWrap = styled.div`
@@ -22,16 +23,24 @@ const BtnWrap = styled.div`
   width: 100%;
   height: 100px;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+  & a {
+    width: 30%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 const Btn = styled.div`
-  width: 30%;
-  height: 50px;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 25px;
+  color: #333;
   cursor: pointer;
   transition: 0.5s;
   &:hover {
@@ -47,8 +56,12 @@ export const Home = () => {
       <Con>
         <Text>Home!</Text>
         <BtnWrap>
-          <Btn link={"/signup"}>SignUp</Btn>
-          <Btn link={"/login"}>Login</Btn>
+          <Link to={"/signup"}>
+            <Btn>SignUp</Btn>
+          </Link>
+          <Link to={"/login"}>
+            <Btn>Login</Btn>
+          </Link>
         </BtnWrap>
       </Con>
     </HomeWrap>
