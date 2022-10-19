@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/Login_project/static/js/main.1120928a.js",
+    "main.js": "/Login_project/static/js/main.ccf43342.js",
     "index.html": "/Login_project/index.html",
-    "main.1120928a.js.map": "/Login_project/static/js/main.1120928a.js.map"
+    "main.ccf43342.js.map": "/Login_project/static/js/main.ccf43342.js.map"
   },
   "entrypoints": [
-    "static/js/main.1120928a.js"
+    "static/js/main.ccf43342.js"
   ]
 }
